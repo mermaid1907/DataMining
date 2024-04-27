@@ -1,0 +1,311 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{float}
+\usepackage{graphicx} % Required for inserting images
+
+
+\title{ObesityEstimation}
+\author{Elif Karagöz}
+\date{April 2024}
+
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{multirow} % Required for multirow command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Estimation of Obesity Levels Based On Eating Habits and Physical Condition *\\
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Elif Karagöz}
+\IEEEauthorblockA{\textit{Yeditepe, Intertech} \\
+Istanbul, Turkey \\
+elif.karagoz@std.yeditepe.edu.tr}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Eren Burulday}
+\IEEEauthorblockA{\textit{Yeditepe, Butigo} \\
+Istanbul, Turkey \\
+eren.burulday@std.yeditepe.edu.tr}
+}
+
+\maketitle
+
+
+\begin{abstract}
+According to the Ministry of Health, the percentage of the population in Indonesia who are overweight is $13.5 \%$ for adults aged 18 years and over, while $28.7 \%$ are obese with BMI $>=25$ and obese with BMI>=27 as much as $15.4 \%$. Meanwhile, at the age of children $5-12$ years, $18.8 \%$ were overweight and $10.8 \%$ were obese. From these data, early detection of obesity levels is needed. From these data, prevention is needed so that the percentage of the population who experience obsediness can decrease, one of the efforts that can be done is to do early detection of obesity, to do early detection of obesity can be done using Machine Learning. In this study, it was discussed about the prediction of obestias levels using 7 (seven) models, namely Naive Bayes (NB), Random Forest (RF), K-NN, Decision Tree Classifier (DTC), SVM, XGB Classifier (XGB), Logistic Regression (LR) from the seven models used to predict the obesity level of XGB Classifier (XGB) which has the highest accuracy, namely Accurasy 0.96, with an f1-score of 0.96, Precission and recall 0.96 .
+\end{abstract}
+
+\begin{IEEEkeywords}
+component, formatting, style, styling, insert
+\end{IEEEkeywords}
+
+\section{Introduction}
+Obesity has become a significant global health issue, with its prevalence increasing rapidly over the past few decades. It is associated with various adverse health outcomes, including cardiovascular diseases, diabetes, and certain types of cancer. Predicting and understanding factors contributing to obesity can play a crucial role in its prevention and management. In this study, we explore the application of machine learning techniques to predict obesity based on demographic and lifestyle factors. Specifically, we investigate clustering methods to identify distinct groups within the population and classification algorithms to predict the likelihood of obesity for individuals. By leveraging these techniques, we aim to provide insights into the complex interplay of factors influencing obesity and contribute to the development of effective intervention strategies.
+\section{Ease of Use}
+Ease of use is a crucial aspect of any predictive modeling framework, especially in the context of healthcare applications where accessibility and interpretability are paramount. In this study, we prioritize the usability of our predictive models by adopting a transparent and interpretable approach. We utilize well-established machine learning algorithms, such as k-means clustering for unsupervised grouping of individuals based on similar characteristics, and classification methods, including logistic regression and decision trees, for predicting obesity risk. Additionally, we provide clear documentation of our data preprocessing steps, feature engineering techniques, and model evaluation metrics to ensure reproducibility and facilitate further research in this domain. Our user-friendly approach aims to empower healthcare professionals and policymakers with actionable insights to address the obesity epidemic effectively.
+
+
+
+
+
+
+\subsection{Units}
+\begin{itemize}
+\item Use either SI (MKS) or CGS as primary units. (SI units are encouraged.) English units may be used as secondary units (in parentheses). An exception would be the use of English units as identifiers in trade, such as ``3.5-inch disk drive''.
+\item Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity that you use in an equation.
+\item Do not mix complete spellings and abbreviations of units: ``Wb/m\textsuperscript{2}'' or ``webers per square meter'', not ``webers/m\textsuperscript{2}''. Spell out units when they appear in text: ``. . . a few henries'', not ``. . . a few H''.
+\item Use a zero before decimal points: ``0.25'', not ``.25''. Use ``cm\textsuperscript{3}'', not ``cc''.)
+\end{itemize}
+
+\subsection{Equations}
+Number equations consecutively. To make your 
+equations more compact, you may use the solidus (~/~), the exp function, or 
+appropriate exponents. Italicize Roman symbols for quantities and variables, 
+but not Greek symbols. Use a long dash rather than a hyphen for a minus 
+sign. Punctuate equations with commas or periods when they are part of a 
+sentence, as in:
+\begin{equation}
+a+b=\gamma\label{eq}
+\end{equation}
+
+Be sure that the 
+symbols in your equation have been defined before or immediately following 
+the equation. Use ``\eqref{eq}'', not ``Eq.~\eqref{eq}'' or ``equation \eqref{eq}'', except at 
+the beginning of a sentence: ``Equation \eqref{eq} is . . .''
+
+\subsection{\LaTeX-Specific Advice}
+
+Please use ``soft'' (e.g., \verb|\eqref{Eq}|) cross references instead
+of ``hard'' references (e.g., \verb|(1)|). That will make it possible
+to combine sections, add equations, or change the order of figures or
+citations without having to go through the file line by line.
+
+Please don't use the \verb|{eqnarray}| equation environment. Use
+\verb|{align}| or \verb|{IEEEeqnarray}| instead. The \verb|{eqnarray}|
+environment leaves unsightly spaces around relation symbols.
+
+Please note that the \verb|{subequations}| environment in {\LaTeX}
+will increment the main equation counter even when there are no
+equation numbers displayed. If you forget that, you might write an
+article in which the equation numbers skip from (17) to (20), causing
+the copy editors to wonder if you've discovered a new method of
+counting.
+
+{\BibTeX} does not work by magic. It doesn't get the bibliographic
+data from thin air but from .bib files. If you use {\BibTeX} to produce a
+bibliography you must send the .bib files. 
+
+{\LaTeX} can't read your mind. If you assign the same label to a
+subsubsection and a table, you might find that Table I has been cross
+referenced as Table IV-B3. 
+
+{\LaTeX} does not have precognitive abilities. If you put a
+\verb|\label| command before the command that updates the counter it's
+supposed to be using, the label will pick up the last counter to be
+cross referenced instead. In particular, a \verb|\label| command
+should not go before the caption of a figure or a table.
+
+Do not use \verb|\nonumber| inside the \verb|{array}| environment. It
+will not stop equation numbers inside \verb|{array}| (there won't be
+any anyway) and it might stop a wanted equation number in the
+surrounding equation.
+
+\subsection{Some Common Mistakes}\label{SCM}
+\begin{itemize}
+\item The word ``data'' is plural, not singular.
+\item The subscript for the permeability of vacuum $\mu_{0}$, and other common scientific constants, is zero with subscript formatting, not a lowercase letter ``o''.
+\item In American English, commas, semicolons, periods, question and exclamation marks are located within quotation marks only when a complete thought or name is cited, such as a title or full quotation. When quotation marks are used, instead of a bold or italic typeface, to highlight a word or phrase, punctuation should appear outside of the quotation marks. A parenthetical phrase or statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.)
+\item A graph within a graph is an ``inset'', not an ``insert''. The word alternatively is preferred to the word ``alternately'' (unless you really mean something that alternates).
+\item Do not use the word ``essentially'' to mean ``approximately'' or ``effectively''.
+\item In your paper title, if the words ``that uses'' can accurately replace the word ``using'', capitalize the ``u''; if not, keep using lower-cased.
+\item Be aware of the different meanings of the homophones ``affect'' and ``effect'', ``complement'' and ``compliment'', ``discreet'' and ``discrete'', ``principal'' and ``principle''.
+\item Do not confuse ``imply'' and ``infer''.
+\item The prefix ``non'' is not a word; it should be joined to the word it modifies, usually without a hyphen.
+\item There is no period after the ``et'' in the Latin abbreviation ``et al.''.
+\item The abbreviation ``i.e.'' means ``that is'', and the abbreviation ``e.g.'' means ``for example''.
+\end{itemize}
+An excellent style manual for science writers is \cite{b7}.
+
+\subsection{Authors and Affiliations}
+\textbf{The class file is designed for, but not limited to, six authors.} A 
+minimum of one author is required for all conference articles. Author names 
+should be listed starting from left to right and then moving down to the 
+next line. This is the author sequence that will be used in future citations 
+and by indexing services. Names should not be listed in columns nor group by 
+affiliation. Please keep your affiliations as succinct as possible (for 
+example, do not differentiate among departments of the same organization).
+
+\subsection{Identify the Headings}
+Headings, or heads, are organizational devices that guide the reader through 
+your paper. There are two types: component heads and text heads.
+
+Component heads identify the different components of your paper and are not 
+topically subordinate to each other. Examples include Acknowledgments and 
+References and, for these, the correct style to use is ``Heading 5''. Use 
+``figure caption'' for your Figure captions, and ``table head'' for your 
+table title. Run-in heads, such as ``Abstract'', will require you to apply a 
+style (in this case, italic) in addition to the style provided by the drop 
+down menu to differentiate the head from the text.
+
+Text heads organize the topics on a relational, hierarchical basis. For 
+example, the paper title is the primary text head because all subsequent 
+material relates and elaborates on this one topic. If there are two or more 
+sub-topics, the next level head (uppercase Roman numerals) should be used 
+and, conversely, if there are not at least two sub-topics, then no subheads 
+should be introduced.
+
+\subsection{Figures and Tables}
+\paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
+bottom of columns. Avoid placing them in the middle of columns. Large 
+figures and tables may span across both columns. Figure captions should be 
+below the figures; table heads should appear above the tables. Insert 
+figures and tables after they are cited in the text. Use the abbreviation 
+``Fig.~\ref{fig}'', even at the beginning of a sentence.
+
+\begin{table}[htbp]
+\caption{Table Type Styles}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+\cline{2-4} 
+\textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
+\hline
+copy& More table copy$^{\mathrm{a}}$& &  \\
+\hline
+\multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
+\end{tabular}
+\label{tab1}
+\end{center}
+\end{table}
+
+
+
+\section*{2. Data Understanding}
+The data used is public data which is an estimate of obesity rates in people from Mexico, Peru and Colombia, with ages between 14 and 61 years and diverse eating habits and physical conditions. Then the information is processed so that 17 attributes are obtained, the data amounts to 2111 records. The following is an explanation of the attributes in Table 1.
+
+Table 1. Attributes from obesity data
+
+\begin{table}[H]
+    \centering
+    \caption{Your table caption here}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Attributes} & \textbf{Information} \\
+    \hline
+    Gender & Respondent's Gender \\
+    \hline
+    Age & Age of Respondents \\
+    \hline
+    Height & Respondent's Height \\
+    \hline
+    Weight & Respondent's Weight \\
+    \hline
+    Family History With Overweight & Respondent's Family History \\
+    \hline
+    FAVC & Habit of Eating Caloric Food \\
+    \hline
+    FCVC & Habit of Eating Vegetable \\
+    \hline
+    NCP & Number of Meals Consumed Daily \\
+    \hline
+    CAEC & Consumption of Food Between Meals \\
+    \hline
+    Family History With Overweight & Y/N \\
+    \hline
+    \end{tabular}
+\end{table}
+
+Source: (Palechor \& Manotas, 2019)
+
+Of the 17 attributes, there is 1 label, namely NObeyesdad and there are 7 classifications of which can be seen in figure 1.
+
+\begin{center}
+\end{center}
+
+\section{Clustering Results}
+
+\subsection{Methodology}\label{AA}
+We employed k-means clustering, a popular unsupervised learning technique, to identify distinct subgroups within the population based on demographic and lifestyle attributes. The clustering process involved iteratively assigning data points to clusters and updating cluster centroids until convergence. We experimented with different numbers of clusters and evaluated their coherence and interpretability.
+
+\subsection{Findings}\label{AA}
+Our clustering analysis revealed several distinct groups within the population, each characterized by unique demographic and lifestyle profiles. These clusters ranged from individuals with sedentary lifestyles and unhealthy dietary habits to those who actively engage in physical activity and maintain balanced diets. By uncovering these distinct patterns, our clustering approach provides valuable insights into the heterogeneity of factors contributing to obesity risk.
+
+\section{Classification Results}
+
+\subsection{Methodology}\label{AA}
+To predict obesity risk, we employed supervised classification algorithms, including logistic regression, support vector machines (SVM), and decision trees. We divided the dataset into training and testing sets, and trained the models on the training data to learn the relationship between predictor variables and obesity status. We then evaluated model performance using various metrics, such as accuracy, precision, recall, and F1-score.
+
+\subsection{Findings}\label{AA}
+Our classification models demonstrated promising performance in predicting obesity risk, achieving high accuracy and robustness across different evaluation metrics. Logistic regression exhibited good interpretability, allowing us to identify significant predictors of obesity. Additionally, decision tree-based models provided insights into the hierarchical structure of risk factors, enabling actionable recommendations for personalized interventions.
+
+\section{Linear Regression Results}
+
+\subsection{Methodology}\label{AA}
+Linear regression is a fundamental statistical method used to model the relationship between a dependent variable (target) and one or more independent variables (features). In our study, we applied linear regression to explore the linear relationship between various demographic and lifestyle factors and the likelihood of obesity. We formulated the regression model as:
+
+\begin{align*}
+y &= \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon \\
+\text{where:} \\
+y & \text{ represents the predicted obesity status,} \\
+\beta_0 & \text{ is the intercept term,} \\
+\beta_1, \beta_2, \ldots, \beta_n & \text{ are the coefficients of the independent variables } x_1, x_2, \ldots, x_n \text{ respectively,} \\
+\epsilon & \text{ denotes the error term.}
+\end{align*}
+
+\subsection{Findings}\label{AA}
+The linear regression model yielded insights into the individual contributions of different factors to obesity risk. By analyzing the coefficients of the regression equation, we identified significant predictors and their respective impacts on the likelihood of obesity. For example, a positive coefficient for physical activity level suggests that increased physical activity is associated with a lower risk of obesity, while a negative coefficient for unhealthy dietary habits indicates a higher risk.
+
+\subsection{Model Evaluation}\label{AA}
+We evaluated the performance of the linear regression model using various metrics, including mean squared error (MSE), root mean squared error (RMSE), and R-squared (coefficient of determination). These metrics provide measures of the model's accuracy, goodness of fit, and ability to explain variance in the target variable. Additionally, we employed cross-validation techniques to assess the generalization performance of the model and ensure its robustness across different data splits.
+
+
+
+\section*{Acknowledgment}
+
+The preferred spelling of the word ``acknowledgment'' in America is without 
+an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
+G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
+acknowledgments in the unnumbered footnote on the first page.
+
+\section*{References}
+
+Please number citations consecutively within brackets \cite{b1}. The 
+sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
+number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
+the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
+
+Number footnotes separately in superscripts. Place the actual footnote at 
+the bottom of the column in which it was cited. Do not put footnotes in the 
+abstract or reference list. Use letters for table footnotes.
+
+Unless there are six authors or more give all authors' names; do not use 
+``et al.''. Papers that have not been published, even if they have been 
+submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
+that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
+Capitalize only the first word in a paper title, except for proper nouns and 
+element symbols.
+
+For papers published in translation journals, please give the English 
+citation first, followed by the original foreign-language citation \cite{b6}.
+
+\begin{thebibliography}{00}
+\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
+\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
+\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
+\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
+\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
+\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
+\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\end{thebibliography}
+\vspace{12pt}
+\color{red}
+IEEE conference templates contain guidance text for composing and formatting conference papers. Please ensure that all template text is removed from your conference paper prior to submission to the conference. Failure to remove the template text from your paper may result in your paper not being published.
+
+\end{document}
